@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+for file in "$@"
+do
+    n=$(ffmpeg -i "$file" 2>&1 | sed -n -r -e '/ *Stream #0.([0-9]+).*: Audio:.*/ { s//\1/; p; q; }')
+    ffmpeg -vn -i "$file" -acodec copy -map 0.$n -map_meta_data 0:0 "${file%.*}.m4a"
+done
+
+# vim:ts=4 sw=4 et

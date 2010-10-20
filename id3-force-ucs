@@ -1,0 +1,27 @@
+#!/usr/bin/python
+
+import sys
+from mutagen.id3 import ID3
+
+for filename in sys.argv[1:]:
+    mp3 = ID3(filename)
+    dirty = False
+    for key, value in mp3.iteritems():
+        if value.encoding == 0:
+            continue
+        text = unicode(value)
+        try:
+            text = text.decode('ASCII')
+            encoding = 0
+        except (UnicodeDecodeError, UnicodeEncodeError):
+            encoding = 1
+        value = type(value)(encoding=encoding, text=text)
+        mp3[key] = value
+        dirty = True
+    if dirty:
+        print >>sys.stderr, 'Writing %s' % filename
+        mp3.save()
+    else:
+        print >>sys.stderr, 'Skipping %s' % filename
+
+# vim:ts=4 sw=4 et
