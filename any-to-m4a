@@ -6,6 +6,14 @@
 # modification, are permitted under any circumstances. No warranty.
 
 set -e
+
+if [ $# -eq 0 ]
+then
+    printf 'Usage: %s <filename>...\n' "$0" >&2
+    printf 'Convert audio files to the MP4 format.\n\n' >&2
+    exit 1
+fi
+
 for file in "$@"
 do
     n=$(ffmpeg -i "$file" 2>&1 | sed -n -r -e '/ *Stream #0.([0-9]+).*: Audio:.*/ { s//\1/; p; q; }')

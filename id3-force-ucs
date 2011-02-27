@@ -9,6 +9,12 @@
 import sys
 from mutagen.id3 import ID3
 
+if len(sys.argv) < 2:
+    print >>sys.stderr, 'Usage: %s <filename>' % sys.argv[0]
+    print >>sys.stderr, 'Change encoding of ID3v2 tags to UCS-2.'
+    print >>sys.stderr
+    sys.exit(1)
+
 for filename in sys.argv[1:]:
     mp3 = ID3(filename)
     dirty = False
