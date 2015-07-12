@@ -8,16 +8,16 @@
 
 from __future__ import print_function
 
+import argparse
 import sys
+
 from mutagen.id3 import ID3
 
-if len(sys.argv) < 2:
-    print('Usage: %s <filename>' % sys.argv[0], file=sys.stderr)
-    print('Change encoding of ID3v2 tags to UCS-2.', file=sys.stderr)
-    print(file=sys.stderr)
-    sys.exit(1)
+ap = argparse.ArgumentParser(description='change encoding of ID3v2 tags to UCS-2')
+ap.add_argument('files', nargs='+', metavar='<filename>')
+options = ap.parse_args()
 
-for filename in sys.argv[1:]:
+for filename in options.files:
     mp3 = ID3(filename)
     dirty = False
     for key, value in mp3.iteritems():
