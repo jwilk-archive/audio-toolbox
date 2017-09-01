@@ -25,9 +25,10 @@ for filename in options.files:
             encoding = 0
         except UnicodeError:
             encoding = 1
-        value = type(value)(encoding=encoding, text=text)
-        mp3[key] = value
-        dirty = True
+        if encoding:
+            value = type(value)(encoding=encoding, text=text)
+            mp3[key] = value
+            dirty = True
     if dirty:
         print('Writing {path}'.format(path=filename), file=sys.stderr)
         mp3.save()
