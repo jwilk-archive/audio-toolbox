@@ -17,7 +17,7 @@ for filename in options.files:
     mp3 = ID3(filename)
     dirty = False
     for key, value in mp3.items():
-        if value.encoding == 0:
+        if value.encoding == 1:
             continue
         text = str(value)
         try:
