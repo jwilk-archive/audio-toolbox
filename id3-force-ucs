@@ -1,11 +1,8 @@
-#!/usr/bin/env python
-# encoding=UTF-8
+#!/usr/bin/env python3
 
 # Copyright © 2010-2017 Jakub Wilk <jwilk@jwilk.net>
 #
 # SPDX-License-Identifier: MIT
-
-from __future__ import print_function
 
 import argparse
 import sys
@@ -19,14 +16,14 @@ options = ap.parse_args()
 for filename in options.files:
     mp3 = ID3(filename)
     dirty = False
-    for key, value in mp3.iteritems():
+    for key, value in mp3.items():
         if value.encoding == 0:
             continue
-        text = unicode(value)
+        text = str(value)
         try:
-            text = text.decode('ASCII')
+            text.encode('ASCII')
             encoding = 0
-        except (UnicodeDecodeError, UnicodeEncodeError):
+        except UnicodeError:
             encoding = 1
         value = type(value)(encoding=encoding, text=text)
         mp3[key] = value
