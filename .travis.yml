@@ -1,0 +1,20 @@
+language: python
+python:
+- "3.3"
+- "3.4"
+- "3.5"
+- "3.6"
+- "3.7-dev"
+dist: trusty
+sudo: false
+install:
+- if [[ $TRAVIS_PYTHON_VERSION = 3.3 ]]; then mutagen_suffix===1.38; fi
+- pip install mutagen${mutagen_suffix}
+- pip install pydiatra pyflakes
+script:
+- ./id3-force-ucs --help
+- python3 -m pyflakes id3-force-ucs
+- python3 -m pydiatra id3-force-ucs
+- shellcheck any-to-m4a
+
+# vim:ts=2 sts=2 sw=2 et
