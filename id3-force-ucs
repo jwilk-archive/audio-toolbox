@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
+# encoding=UTF-8
 
 # Copyright © 2010-2017 Jakub Wilk <jwilk@jwilk.net>
 #
 # SPDX-License-Identifier: MIT
+
+lambda: (yield from 0)  # Python >= 3.3 is required
 
 import argparse
 import sys
