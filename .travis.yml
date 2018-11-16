@@ -12,8 +12,8 @@ before_install:
 - pyflakes=pyflakes
 - if [[ $TRAVIS_PYTHON_VERSION = 3.3 ]]; then pyflakes='pyflakes<2'; fi
 install:
-- pip install mutagen${mutagen_suffix}
-- pip install pydiatra $pyflakes
+- python3 -m pip install mutagen${mutagen_suffix}
+- python3 -m pip install pydiatra $pyflakes
 script:
 - ./id3-force-ucs --help
 - python3 -m pyflakes id3-force-ucs
