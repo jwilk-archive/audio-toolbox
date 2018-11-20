@@ -6,7 +6,6 @@ python:
 - "3.6"
 - "3.7-dev"
 dist: trusty
-sudo: false
 before_install:
 - if [[ $TRAVIS_PYTHON_VERSION = 3.3 ]]; then mutagen_suffix===1.38; fi
 - pyflakes=pyflakes
