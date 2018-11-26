@@ -12,7 +12,7 @@ import sys
 from mutagen.id3 import ID3
 
 ap = argparse.ArgumentParser(description='change encoding of ID3v2 tags to UCS-2')
-ap.add_argument('files', nargs='+', metavar='<filename>')
+ap.add_argument('files', nargs='+', metavar='FILE')
 options = ap.parse_args()
 
 for filename in options.files:
