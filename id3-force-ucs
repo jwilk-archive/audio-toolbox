@@ -4,12 +4,12 @@
 # Copyright © 2010-2018 Jakub Wilk <jwilk@jwilk.net>
 # SPDX-License-Identifier: MIT
 
-lambda: (yield from 0)  # Python >= 3.3 is required
-
 import argparse
 import sys
 
 from mutagen.id3 import ID3
+
+lambda: (yield from 0)  # Python >= 3.3 is required
 
 ap = argparse.ArgumentParser(description='change encoding of ID3v2 tags to UCS-2')
 ap.add_argument('files', nargs='+', metavar='FILE')
